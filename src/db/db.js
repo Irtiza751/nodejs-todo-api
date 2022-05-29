@@ -7,7 +7,7 @@ async function dbrun () {
         });
         console.log('db connected!')
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
     }
 }
 
