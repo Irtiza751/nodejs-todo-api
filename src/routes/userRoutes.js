@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const auth = require('../middlewares/auth');
 const router = Router();
 
 router.post('/register', async (req, res) => {
@@ -9,7 +10,7 @@ router.post('/register', async (req, res) => {
         await user.save();
         res.status(201).json(user);
     } catch (error) {
-        res.status(400).json({msg: error.message});
+        res.status(400).json({ msg: error.message });
     }
 });
 
