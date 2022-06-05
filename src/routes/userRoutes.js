@@ -10,6 +10,7 @@ router.post('/register', async (req, res) => {
         await user.save();
         res.status(201).json(user);
     } catch (error) {
+        // console.log(error.message);
         res.status(400).json({ msg: error.message });
     }
 });
@@ -30,7 +31,7 @@ router.post('/login', async (req, res) => {
 router.patch('/me', auth, async (req, res) => {
     const validFields = ['username', 'email'];
     const updates = Object.keys(req.body)
-    const fieldsAreValid = updates.every((field, i) => validFields[i] === field);
+    const fieldsAreValid = updates.every(field => validFields.includes(field));
 
     try {
         if (!fieldsAreValid) {
