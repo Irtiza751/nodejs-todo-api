@@ -19,14 +19,13 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     token: {
         type: String,
-        required: true,
     }
 }, { timestamps: true });
 
 UserSchema.pre('save', async function (next) {
     const user = this;
-    const hashPassword = await bcrypt.hash(user.password, 8);
     user.token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
+    const hashPassword = await bcrypt.hash(user.password, 8);
     user.password = hashPassword;
     next();
 });
