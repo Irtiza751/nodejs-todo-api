@@ -45,10 +45,15 @@ router.patch('/task/:id', auth, async (req, res) => {
 
     const isValid = updates.every(update => validUpdates.includes(update));
     try {
-        console.log(isValid);
         if (!isValid) {
             throw new Error('You have send invalid filed to update!');
         }
+        // find the task thats need to be updated.
+        const task = await Task.findById(req.params.id);
+        /**
+        * @TODO
+        * Loop through the updates and update all fields & save it to the database.
+        */
         res.send(isValid);
     } catch (error) {
         res.status(400).json({ msg: error.message });
