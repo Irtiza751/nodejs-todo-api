@@ -54,6 +54,7 @@ router.patch('/task/:id', auth, async (req, res) => {
         * @TODO
         * Loop through the updates and update all fields & save it to the database.
         */
+        updates.forEach(update => task[update] = update);
         res.send(isValid);
     } catch (error) {
         res.status(400).json({ msg: error.message });
