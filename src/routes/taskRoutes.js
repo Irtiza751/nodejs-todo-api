@@ -61,4 +61,9 @@ router.patch('/task/:id', auth, async (req, res) => {
     }
 });
 
+// setting up delete task route
+// router.delete('/task/:id', auth, async (req, res) => {})
+/**
+@TODO: create a feature & experiment branches to organize and manage codebase 😊.
+*/
 module.exports = router;
