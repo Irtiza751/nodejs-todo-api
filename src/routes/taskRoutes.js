@@ -50,13 +50,24 @@ router.patch('/task/:id', auth, async (req, res) => {
         // find the task thats need to be update.
         const task = await Task.findById(req.params.id);
 
-        updates.forEach(update => {
-            // console.log(req.body[update]);
-            task[update] = req.body[update];
-        });
+        updates.forEach(update => task[update] = req.body[update]);
         await task.save();
-        
-        res.status(200).json(task);
+
+        res.status(204).json(task);
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+});
+
+
+router.delete('/task/:id', auth, async (req, res) => {
+    try {
+        const result = await Task.findByIdAndDelete(req.params.id);
+        if(!result) {
+            throw new Error('Task already deleted!');
+        }
+
+        res.json({ msg: 'task deleted successfully.'});
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }
