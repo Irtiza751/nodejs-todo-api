@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const req = require('express/lib/request');
 const auth = require('../middlewares/auth');
 const Task = require('../models/Task');
 
@@ -18,7 +17,7 @@ router.post('/task', auth, async (req, res) => {
 router.get('/task', auth, async (req, res) => {
     try {
         const tasks = await Task.find({ owner: req.userId });
-        if (tasks.length) {
+        if (tasks.length <= 0) {
             return res.json({ msg: 'You have no tasks!' });
         }
         res.json(tasks);
@@ -48,14 +47,16 @@ router.patch('/task/:id', auth, async (req, res) => {
         if (!isValid) {
             throw new Error('You have send invalid filed to update!');
         }
-        // find the task thats need to be updated.
+        // find the task thats need to be update.
         const task = await Task.findById(req.params.id);
-        /**
-        * @TODO
-        * Loop through the updates and update all fields & save it to the database.
-        */
-        updates.forEach(update => task[update] = update);
-        res.send(isValid);
+
+        updates.forEach(update => {
+            // console.log(req.body[update]);
+            task[update] = req.body[update];
+        });
+        await task.save();
+        
+        res.status(200).json(task);
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }
