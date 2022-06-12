@@ -14,3 +14,4 @@ Latter add status field to user profile to check if the user is online or offlin
 - [ ] Image uploading
 - [x] Authentication
 - [ ] Automate emailing
+- [ ] Add delete route to user and cascade the task deletion.
