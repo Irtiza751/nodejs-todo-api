@@ -7,3 +7,10 @@ This is a simple todo API with features like:
 
 & so much more...
 Latter add status field to user profile to check if the user is online or offline.
+
+### todos
+- [x] CRUD for tasks & users
+- [x] Relation b/w tasks & users
+- [ ] Image uploading
+- [x] Authentication
+- [ ] Automate emailing
