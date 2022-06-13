@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
-        const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
+        const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {expiresIn: "7d"});
         user.token = token;
 
         res.status(201).json(user);
