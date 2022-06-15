@@ -58,4 +58,12 @@ router.get('/me', auth, async (req, res) => {
     }
 });
 
+router.delete('/me', auth, async (req, res) => {
+    try {
+        // delete user logic.
+    } catch(error) {
+        res.status(400).json({msg: 'something went wrong!'});
+    }
+});
+
 module.exports = router;
