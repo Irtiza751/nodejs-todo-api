@@ -40,6 +40,7 @@ UserSchema.statics.findByCredentials = async function (email, password) {
     }
     // check if the password is valid
     const isValidPass = await bcrypt.compare(password, user.password);
+    console.log(isValidPass);
     if (!isValidPass) {
         throw new Error('Invalid Crendentials')
     }

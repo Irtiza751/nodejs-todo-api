@@ -24,7 +24,22 @@ router.post('/login', async (req, res) => {
         res.status(201).json(user);
     } catch (error) {
         res.status(401).json({ msg: error.message });
-        console.log(error);
+    }
+});
+
+router.post('/logout', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+        if(!user) {
+            throw new Error('User doest not exist');
+        }
+        delete user.token;
+        await user.save();
+        
+        console.log(user);
+        res.json({msg: 'You are loged out'});
+    } catch (error) {
+        res.status(400).json({msg: error.message});
     }
 });
 
