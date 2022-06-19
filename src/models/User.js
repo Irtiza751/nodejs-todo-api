@@ -46,4 +46,10 @@ UserSchema.statics.findByCredentials = async function (email, password) {
     return user;
 }
 
+UserSchema.pre('remove', async function(next) {
+    const user = this;
+    await Task.deleteMany({owner: user._id});
+    next();
+})
+
 module.exports = mongoose.model('User', UserSchema);

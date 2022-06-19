@@ -60,7 +60,7 @@ router.get('/me', auth, async (req, res) => {
 
 router.delete('/me', auth, async (req, res) => {
     try {
-        await User.deleteById(req.userId);
+        await User.deleteOne({_id: req.userId});
         
         res.json({msg: 'Your account is deleted successfully!'});
     } catch(error) {
