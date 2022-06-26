@@ -11,9 +11,11 @@ Latter add status field to user profile to check if the user is online or offlin
 ### todos
 - [x] CRUD for tasks & users
 - [x] Relation b/w tasks & users
+- [x] Authentication
+- [x] Add delete route to user and cascade the task deletion.
 - [ ] Sorting & Pagination queries
 - [ ] Image uploading
-- [x] Authentication
 - [ ] Automate emailing
-- [x] Add delete route to user and cascade the task deletion.
 - [ ] Find the alternative of bcryptjs library.
+
+Remaining tasks count 4.
