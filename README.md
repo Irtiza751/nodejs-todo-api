@@ -19,3 +19,6 @@ Latter add status field to user profile to check if the user is online or offlin
 - [ ] Find the alternative of bcryptjs library.
 
 Remaining tasks count 4.
+### Reminders
+- Learn and add unit testing
+- Learn and add docker
