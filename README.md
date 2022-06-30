@@ -22,5 +22,3 @@ Remaining tasks count 4.
 ### Reminders
 - Learn and add unit testing
 - Learn and add docker
-
-#### daily commit contribution for github strar
