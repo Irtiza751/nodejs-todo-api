@@ -19,3 +19,8 @@ Latter add status field to user profile to check if the user is online or offlin
 - [ ] Find the alternative of bcryptjs library.
 
 Remaining tasks count 4.
+- [ ] Add delete route to user and cascade the task deletion.
+
+### Note
+Always use `features` branch for any new features.
+Always remember to check which branch you are workin with
