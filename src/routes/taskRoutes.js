@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const taskController = require('../controllers/taskController');
 const auth = require('../middlewares/auth');
-const Task = require('../models/Task');
 
 const router = Router();
 
