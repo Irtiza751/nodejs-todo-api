@@ -12,8 +12,13 @@ module.exports = {
   },
 
   getAllTask: async (req, res) => {
+    // console.log(req.query);
     try {
-      const tasks = await Task.find({ owner: req.userId });
+      // sort by (condition)
+      const sortBy = req.query.sort === 'desc' ? '-title' : 'title';
+
+      const tasks = await Task.find({ owner: req.userId }).sort(sortBy);
+
       if (tasks.length <= 0) {
         return res.json({ msg: 'You have no tasks!' });
       }
