@@ -11,17 +11,23 @@ module.exports = {
     }
   },
 
+  // api/task?compeleted=(true/false)&&sort=(assc/desc)
   getAllTask: async (req, res) => {
-    // console.log(req.query);
+    console.log(req.query);
     try {
       // sort by (condition)
       const sortBy = req.query.sort === 'desc' ? '-title' : 'title';
-
-      const tasks = await Task.find({ owner: req.userId }).sort(sortBy);
-
-      if (tasks.length <= 0) {
-        return res.json({ msg: 'You have no tasks!' });
+      // filter query
+      const match = {};
+      if(req.query.isDone) {
+        match.isDone = req.query.isDone === 'true';
       }
+
+      const tasks = await Task.find({ owner: req.userId, ...match })
+        .limit(Number(req.query.limit))
+        .skip(Number(req.query.skip))
+        .sort(sortBy);
+        
       res.json(tasks);
     } catch (error) {
       res.status(401).json({ msg: error.message });
