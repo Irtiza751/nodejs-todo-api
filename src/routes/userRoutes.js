@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
-        const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {expiresIn: "7d"});
+        const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, { expiresIn: "7d" });
         user.token = token;
 
         res.status(201).json(user);
@@ -29,17 +29,17 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', auth, async (req, res) => {
     try {
-        const user = await User.findById(req.userId);
-        if(!user) {
-            throw new Error('User doest not exist');
-        }
-        delete user.token;
-        await user.save();
+        const dbRes = await User.updateOne(
+            { _id: req.userId }, { $unset: { token: 1 } }
+        );
         
-        console.log(user);
-        res.json({msg: 'You are loged out'});
+        if(!dbRes.acknowledged) {
+            res.json({msg: 'You are unauthorize!'});
+        }
+
+        res.json({ msg: 'You are loged out' });
     } catch (error) {
-        res.status(400).json({msg: error.message});
+        res.status(400).json({ msg: error.message });
     }
 });
 
@@ -57,7 +57,7 @@ router.patch('/me', auth, async (req, res) => {
         updates.forEach(update => user[update] = req.body[update]);
 
         await user.save();
-        res.json({msg: 'Profile successfully updated!'});
+        res.json({ msg: 'Profile successfully updated!' });
     } catch (error) {
         res.status(401).json({ msg: error.message });
     }
@@ -75,11 +75,11 @@ router.get('/me', auth, async (req, res) => {
 
 router.delete('/me', auth, async (req, res) => {
     try {
-        await User.deleteOne({_id: req.userId});
-        
-        res.json({msg: 'Your account is deleted successfully!'});
-    } catch(error) {
-        res.status(400).json({msg: 'something went wrong!'});
+        await User.deleteOne({ _id: req.userId });
+
+        res.json({ msg: 'Your account is deleted successfully!' });
+    } catch (error) {
+        res.status(400).json({ msg: 'something went wrong!' });
     }
 });
 
