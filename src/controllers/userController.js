@@ -61,6 +61,17 @@ module.exports = {
     }
   },
 
+  uploadAvatar: async (req, res) => {
+    try {
+      res.json(req.file.path);
+      console.log("body: ", req.body);
+      console.log("file: ", req.file);
+      console.log("userId: ", req.userId);
+    } catch (error) {
+      res.json(error);
+    }
+  },
+
   getProfile: async (req, res) => {
     try {
       const user = await User.findById({ _id: req.userId })
