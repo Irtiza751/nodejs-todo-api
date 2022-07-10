@@ -4,7 +4,10 @@ const User = require('../models/User');
 module.exports = {
   registerUser: async (req, res) => {
     try {
-      const user = new User(req.body);
+      // creating image uri
+      const image = `${process.env.rootUrl}/profiles/${req.file.filename}`;
+      const user = new User({...req.body, avatar: image});
+      // console.log(user);
       await user.save();
       res.status(201).json(user);
     } catch (error) {
@@ -42,7 +45,7 @@ module.exports = {
   },
 
   updateProfile: async (req, res) => {
-    const validFields = ['username', 'email'];
+    const validFields = ['username', 'email', 'profile'];
     const updates = Object.keys(req.body)
     const fieldsAreValid = updates.every(field => validFields.includes(field));
 
@@ -61,22 +64,11 @@ module.exports = {
     }
   },
 
-  uploadAvatar: async (req, res) => {
-    try {
-      res.json(req.file.path);
-      console.log("body: ", req.body);
-      console.log("file: ", req.file);
-      console.log("userId: ", req.userId);
-    } catch (error) {
-      res.json(error);
-    }
-  },
-
   getProfile: async (req, res) => {
     try {
       const user = await User.findById({ _id: req.userId })
-      const { username, email, id } = user;
-      res.json({ username, email, id });
+      const { username, email, avatar } = user;
+      res.json({ username, email, avatar });
     } catch (error) {
       res.status(400).json({ msg: 'Something went wrong.' })
     }
