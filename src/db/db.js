@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function dbrun () {
     try {
-        await mongoose.connect('mongodb://localhost:27017/todoapp', {
+        await mongoose.connect(process.env.db_connection, {
             useNewUrlParser: true,
         });
         console.log('db connected!')
