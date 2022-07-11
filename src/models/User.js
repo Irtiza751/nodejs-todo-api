@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
         }
     },
     password: { type: String, required: true },
-    avatar: { type: String, required: false },
+    avatar: { type: Buffer, required: false },
     token: { type: String },
 }, { timestamps: true });
 

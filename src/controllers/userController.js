@@ -5,7 +5,9 @@ module.exports = {
   registerUser: async (req, res) => {
     try {
       // creating image uri
-      const image = `${process.env.rootUrl}/profiles/${req.file.filename}`;
+      // const image = `${process.env.rootUrl}/profiles/${req.file.filename}`;
+      console.log(req.file.buffer);
+      const image = req.file.buffer;
       const user = new User({...req.body, avatar: image});
       // console.log(user);
       await user.save();

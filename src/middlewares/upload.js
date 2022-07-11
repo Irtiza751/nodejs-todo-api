@@ -16,10 +16,6 @@ const storage = multer.diskStorage({
   filename(req, file, cb) {
     cb(null, req.userId ? req.userId + path.extname(file.originalname) : Date.now() + path.extname(file.originalname));
   },
-
-  destination(req, file, cb) {
-    cb(null, path.join(__dirname, '../../../avatars'))
-  }
 });
 
 console.log("dirctory", __dirname, '/avatars');
