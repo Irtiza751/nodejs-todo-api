@@ -22,6 +22,6 @@ const storage = multer.diskStorage({
   }
 });
 
-// console.log();
+console.log(__dirname, '../../avatars');
 const upload = multer({ storage });
 module.exports = upload;
