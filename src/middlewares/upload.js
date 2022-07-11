@@ -12,10 +12,6 @@ const storage = multer.diskStorage({
     }
     cb(null, true);
   },
-
-  filename(req, file, cb) {
-    cb(null, req.userId ? req.userId + path.extname(file.originalname) : Date.now() + path.extname(file.originalname));
-  },
 });
 
 console.log("dirctory", __dirname, '/avatars');
