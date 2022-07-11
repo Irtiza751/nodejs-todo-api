@@ -14,7 +14,7 @@ Latter add status field to user profile to check if the user is online or offlin
 - [x] Authentication
 - [x] Add delete route to user and cascade the task deletion.
 - [x] filtering, Sorting, & Pagination queries
-- [ ] Image uploading
+- [x] Image uploading
 - [ ] Automate emailing
 - [ ] Find the alternative of bcryptjs library.
 
