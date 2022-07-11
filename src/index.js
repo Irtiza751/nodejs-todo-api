@@ -19,6 +19,8 @@ app.use('/profiles', auth, express.static('avatars'))
 /* all of the routes */
 app.use('/api/user/', userRoutes);
 app.use('/api/', taskRoutes);
+// root route.
+app.get('/', (req, res) => res.send('Welcome todo api'));
 
 
 app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));
