@@ -18,10 +18,10 @@ const storage = multer.diskStorage({
   },
 
   destination(req, file, cb) {
-    cb(null, path.join(__dirname, '../../avatars'))
+    cb(null, path.join(__dirname, '/avatars'))
   }
 });
 
-console.log("dirctory", __dirname, '../../avatars');
+console.log("dirctory", __dirname, '/avatars');
 const upload = multer({ storage });
 module.exports = upload;
