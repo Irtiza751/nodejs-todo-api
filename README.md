@@ -1,26 +1,14 @@
 # TODO-API
 This is a simple todo API with features like:
-- Authentication & Authorization
-- CRUD
-- Image uploading
-- Automated Emailing
-
-& so much more...
-Latter add status field to user profile to check if the user is online or offline.
-
-### todos
-- [x] CRUD for tasks & users
-- [x] Relation b/w tasks & users
-- [x] Authentication
-- [x] Add delete route to user and cascade the task deletion.
-- [x] filtering, Sorting, & Pagination queries
+- [x] Authentication & Authorization
+- [x] CRUD
 - [x] Image uploading
-- [ ] Automate emailing
-- [ ] Find the alternative of bcryptjs library.
+- [ ] Automated Emailing
 
-Remaining tasks count 4.
-- [x] Add delete route to user and cascade the task deletion.
+In order to use this repo 1st install node then clone this repo and run `yarn add`
+After running `yarn add` create a dot env file in your root folder and add the following keys.
+1. db_connection = 'XXXXX-XXXXX-XXXXX'
+2. jwt_secret = 'some jibrish abc xyz @123...'
+3. root_url = 'localhost:3000'
 
-### Note
-Always use `features` branch for any new features.
-Always remember to check which branch you are workin with
+And you're good to go... 😉
