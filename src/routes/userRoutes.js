@@ -5,13 +5,13 @@ const userController = require('../controllers/userController');
 // init router
 const router = Router();
 
-router.post('/register', upload.single('avatars'), userController.registerUser);
+router.post('/register', upload.single('avatar'), userController.registerUser);
 
 router.post('/login', userController.loginUser);
 
 router.post('/logout', auth, userController.logoutUser);
 
-router.patch('/me', auth, upload.single('avatars'), userController.updateProfile);
+router.patch('/me', auth, upload.single('avatar'), userController.updateProfile);
 
 router.get('/me', auth, userController.getProfile);
 

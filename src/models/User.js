@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
         }
     },
     password: { type: String, required: true },
-    avatar: { type: Buffer, required: false },
+    avatar: { type: Buffer, contentType: String, required: false },
     token: { type: String },
 }, { timestamps: true });
 
@@ -45,7 +45,7 @@ UserSchema.statics.findByCredentials = async function (email, password) {
     // const isValidPass = await bcrypt.compare(password, user.password);
     const decryptPass =
         AES.decrypt(user.password, process.env.JWT_SECRET)
-        .toString(enc.Utf8);
+            .toString(enc.Utf8);
 
     const isValidPass = decryptPass === password;
 
