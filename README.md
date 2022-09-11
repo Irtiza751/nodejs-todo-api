@@ -4,6 +4,7 @@ This is a simple todo API with features like:
 - [x] CRUD
 - [x] Image uploading
 - [ ] Automated Emailing
+- [ ] Password reset functionality
 
 In order to use this repo 1st install node then clone this repo and run `yarn add`
 After running `yarn add` create a dot env file in your root folder and add the following keys.
